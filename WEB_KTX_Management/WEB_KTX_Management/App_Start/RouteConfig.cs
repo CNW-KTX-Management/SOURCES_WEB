@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CNW_QuanLyKTX
+namespace WEB_KTX_Management
 {
     public class RouteConfig
     {

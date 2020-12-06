@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CNW_QuanLyKTX")]
+[assembly: AssemblyTitle("WEB_KTX_Management")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CNW_QuanLyKTX")]
+[assembly: AssemblyProduct("WEB_KTX_Management")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("37a83e08-aac2-4979-a1d4-f517324008b7")]
+[assembly: Guid("ae3cefef-6798-471a-8540-7ee9a570f765")]
 
 // Version information for an assembly consists of the following four values:
 //

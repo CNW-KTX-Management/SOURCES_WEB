@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace CNW_QuanLyKTX
+namespace WEB_KTX_Management
 {
     public static class WebApiConfig
     {

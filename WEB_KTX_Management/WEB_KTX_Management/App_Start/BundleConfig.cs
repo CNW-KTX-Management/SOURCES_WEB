@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace CNW_QuanLyKTX
+namespace WEB_KTX_Management
 {
     public class BundleConfig
     {
