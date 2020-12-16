@@ -26,6 +26,6 @@ D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\bin\System.
 D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\bin\System.Web.WebPages.xml
 D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\bin\System.Web.WebPages.Deployment.xml
 D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\bin\System.Web.WebPages.Razor.xml
-D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\obj\Debug\WEB_KTX_Management.csprojResolveAssemblyReference.cache
 D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\obj\Debug\WEB_KTX_Management.dll
 D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\obj\Debug\WEB_KTX_Management.pdb
+D:\CNW\GIT_SOURCES\SOURCES_WEB\WEB_KTX_Management\WEB_KTX_Management\obj\Debug\WEB_KTX_Management.csprojResolveAssemblyReference.cache

@@ -9,5 +9,9 @@ namespace WEB_KTX_Management.Contants
     {
         const int NHANVIEN_STATUS_ACTIVE = 1;
         const int NHANVIEN_STATUS_BLOCK = 2;
+
+        public const int HOPDONG_STATUS_MOI = 1;
+        public const int HOPDONG_STATUS_HET_HAN = 2;
+        public const int HOPDONG_STATUS_HUY = 3;
     }
 }
