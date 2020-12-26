@@ -1,0 +1,258 @@
+﻿@using KTX_Management.Mapper;
+@{
+    ViewBag.Title = "HopDongMain";
+}
+@model List<HopDongMapper>
+
+<div class="container" style="margin: 20px">
+    <h3>Danh sách hợp đồng</h3>
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Ngày làm đơn</th>
+                <th>Sinh viên</th>
+                <th>Tình trạng</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Thao tác</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+    <br />
+</div>
+
+<button type="button" class="btn btn-primary" style="margin-left: 20px; text-align: center">Tạo hợp đồng mới</button>
+
+<div class="modal" id="myModal" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cập nhật hợp đồng</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid" id="alert" style="background:#EEEEEE; text-align:center; border-radius:6px; padding:4px" hidden="hidden">
+                    <input id="txtWarning" style="border:none; background-color:transparent" disabled="disabled" />
+                    <button type="button" class="btn btn-danger" id="btnClose" onclick="closeElert();">Close</button>
+                </div>
+
+                <form>
+                    <div class="form-group" hidden="hidden">
+                        <label>Id</label>
+                        <input type="number" class="form-control" id="IdHopDong" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày bắt đầu</label>
+                        <input type="date" class="form-control" id="NgayBatDau" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày kết thúc</label>
+                        <input type="date" class="form-control" id="NgayKetThuc" />
+                    </div>
+
+                    <label>Tình trạng</label>
+                    <div class="form-group" style="text-align:center">
+                        <div class="form-inline">
+                            <div class="form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="rdAccept"
+                                       id="rdAccept" onclick="changeStatus(4);" />
+                                <label class="form-check-label" for="rdAccept"> Duyệt hợp đồng</label>
+                            </div>
+
+                            <div class="form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="rdFinish"
+                                       id="rdFinish" onclick="changeStatus(2);" />
+                                <label class="form-check-label" for="rdFinish"> Kết thúc hợp đồng </label>
+                            </div>
+
+                            <div class="form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="rdCancel"
+                                       id="rdCancel" onclick="changeStatus(3);" />
+                                <label class="form-check-label" for="rdCancel">Hủy hợp đồng </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnUpdate" onclick="updateContact();">Cập nhật</button>
+                <button type="button" class="btn btn-default" id="btnClose" onclick="closeDialog();">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData() {
+        $.ajax({
+            url: "/HopDong/GetListHopDong",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += '<td>' + item.Stt + '</td>';
+                    html += '<td>' + item.NgayLamDon + '</td>';
+                    html += '<td>' + item.TenSinhVien + '</td>';
+                    html += '<td>' + item.TenTinhTrang + '</td>';
+                    html += '<td>' + item.NgayBatDau + '</td>';
+                    html += '<td>' + item.NgayKetThuc + '</td>';
+                    html += '<td><button type="button" class="btn btn-primary" onclick="gotoContactDetail(' + item.IdHopDong + ');">Chi tiết</button></td>';
+                    html += '<td><button type="button" class="btn btn-warning" onclick="getContactDetail(' + item.IdHopDong + ');">Chỉnh sửa</button></td>';
+                    html += '</tr>';
+                });
+                $('.tbody').html(html);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function showDialog() {
+        $('#myModal').show();
+    }
+
+    function closeElert() {
+        document.getElementById("alert").hidden = true;
+    }
+
+    function closeDialog() {
+        $('#myModal').hide();
+    }
+
+    function changeStatus(statusId) {
+        switch (statusId) {
+            case 4: {
+                document.getElementById("rdAccept").checked = true;
+                document.getElementById("rdFinish").checked = false;
+                document.getElementById("rdCancel").checked = false;
+                break;
+            }
+            case 2: {
+                document.getElementById("rdFinish").checked = true;
+                document.getElementById("rdAccept").checked = false;
+                document.getElementById("rdCancel").checked = false;
+                break;
+            }
+            case 3: {
+                document.getElementById("rdCancel").checked = true;
+                document.getElementById("rdAccept").checked = false;
+                document.getElementById("rdFinish").checked = false;
+                break;
+            }
+        }
+    }
+
+    function gotoContactDetail(id) {
+        window.location = "HopDong/GoToChiTietHopDong/" + id;
+    }
+
+    function updateContact() {
+        var idTinhTrang = 1;
+        if (document.getElementById("rdCancel").checked) {
+            idTinhTrang = 3;
+
+        } else if (document.getElementById("rdNew").checked) {
+            idTinhTrang = 1;
+        } else {
+            idTinhTrang = 2;
+        }
+
+        var hd = {
+            Id: $('#IdHopDong').val(),
+            NgayBatDau: $('#NgayBatDau').val(),
+            NgayKetThuc: $('#NgayKetThuc').val(),
+            TinhTrang: idTinhTrang,
+        }
+
+        $.ajax({
+            url: "/HopDong/CapNhatHopDong",
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(hd),
+            success: function (result) {
+                if (result == 200) {
+                    loadData();
+                    $('#myModal').hide();
+                }
+
+                if (result == 500) {
+                    document.getElementById("alert").hidden = false;
+                    $('#txtWarning').val("Chưa chọn ngày bắt đầu và kết thúc hợp đồng");
+                }
+
+                if (result == 202) {
+                    document.getElementById("alert").hidden = false;
+                    $('#txtWarning').val("Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
+                }
+
+                if (result == 400) {
+                    document.getElementById("alert").hidden = false;
+                    $('#txtWarning').val("Xảy ra lỗi trong quá trình cập nhật....");
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function getContactDetail(id) {
+        $.ajax({
+            url: "/HopDong/ChiTietHopDong/" + id,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#IdHopDong').val(result.IdHopDong);
+                $('#NgayBatDau').val(result.NgayBatDau);
+                $('#NgayKetThuc').val(result.NgayKetThuc);
+                switch (result.IdTinhTrang) {
+                    case 2: {
+                        document.getElementById("rdFinish").checked = true;
+                        document.getElementById("rdAccept").checked = false;
+                        document.getElementById("rdCancel").checked = false;
+                        break;
+                    }
+                    case 3: {
+                        document.getElementById("rdCancel").checked = true;
+                        document.getElementById("rdAccept").checked = false;
+                        document.getElementById("rdFinish").checked = false;
+                        break;
+                    }
+                }
+
+                $('#myModal').show();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>

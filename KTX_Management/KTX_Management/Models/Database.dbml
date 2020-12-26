@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="KTX_Management" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-RAA63FM\SQLEXPRESS;Initial Catalog=KTX_Management;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="KTX_ManagementConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Dien" Member="Diens">
+    <Type Name="Dien">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GiaDien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SinhVien" Member="SinhViens">
+    <Type Name="SinhVien">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MSSV" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Passport" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDon" Member="HoaDons">
+    <Type Name="HoaDon">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdRoom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdNhanVien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdDien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdNuoc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NgayLap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoDienCu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoDienMoi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoNuocCu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoNuocMoi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ThanhTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IdSinhVien" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HopDong" Member="HopDongs">
+    <Type Name="HopDong">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdSinhVien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdNhanVien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NgayBatDau" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayKetThuc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayLap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TinhTrang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NgayLamDon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdRoom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Khu" Member="Khus">
+    <Type Name="Khu">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenKhu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVien" Member="NhanViens">
+    <Type Name="NhanVien">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChucVu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Nuoc" Member="Nuocs">
+    <Type Name="Nuoc">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GiaNuoc" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdKhu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TenPhong" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TinhTrang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuongToiDa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

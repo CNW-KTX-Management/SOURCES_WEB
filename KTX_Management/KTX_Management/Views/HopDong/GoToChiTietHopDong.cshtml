@@ -1,0 +1,143 @@
+﻿@using KTX_Management.Mapper;
+@using KTX_Management.Models;
+@{
+    ViewBag.Title = "GoToChiTietHopDong";
+    SinhVien sv = ViewBag.sinhVien;
+    NhanVien nv = ViewBag.nhanVien;
+    Room room = ViewBag.room;
+    List<HoaDon> listHoaDon = ViewBag.listHoaDon;
+
+    string roomName = "-";
+    if (room != null) {
+        roomName = room.Id.ToString();
+    }
+
+    string gioiTinh = "Nam";
+    if (sv.GioiTinh != 0)
+    {
+        gioiTinh = "Nữ";
+    }
+}
+@model HopDongMapper
+
+<div class="container-fluid">
+    <div class="card" style="margin:20px; padding:10px">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h4>Thông tin hợp đồng</h4>
+                    <div class="form-group">
+                        <label style="margin-right:10px">Ngày làm đơn</label>
+                        <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="NgayBatDau" value=" @Model.NgayLamDon">
+                    </div>
+                    <div class="form-group">
+                        <label style="margin-right:10px">Tình trạng</label>
+                        <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="TinhgTrang" value=" @Model.TenTinhTrang">
+                    </div>
+
+                    <div class="form-group">
+                        <label style="margin-right:10px">Phòng</label>
+                        <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="TinhgTrang" value=" @roomName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <h4>Thông tin nhân viên</h4>
+
+                    <div class="form-group">
+                        <label style="margin-right:10px">Nhân viên</label>
+                        <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="TinhgTrang" value=" @nv.Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label style="margin-right:10px">Liên hệ</label>
+                        <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="TinhgTrang" value=" @nv.Phone">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4>Thông tin sinh viên</h4>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label style="margin-right:10px">Mã số sinh viên</label>
+                            <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="MSSV" value="@sv.MSSV">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-right:10px">Tên sinh viên</label>
+                            <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="TenSinhVien" value="@sv.Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-right:10px">Giới tính</label>
+                            <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="CMND" value="@gioiTinh">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label style="margin-right:10px">Ngày sinh</label>
+                            <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="CMND" value=" @sv.NgaySinh">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-right:10px">CMND</label>
+                            <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="CMND" value=" @sv.Passport">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-right:10px">Số điện thoại</label>
+                            <input disabled="disabled" style="margin-right:10px" type="text" class="form-control" id="CMND" value=" @sv.Phone">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="margin:20px; padding:10px">
+        <div class="row">
+            <div class="col-10">
+                <h3>Danh sách thanh toán</h3>
+            </div>
+
+            <div class="col-2">
+                <button class="btn btn-primary">Thêm thanh toán</button>
+            </div>
+        </div>
+
+        <table class="table table-striped" style="margin-top:10px">
+            <thead>
+                <tr>
+                    <th>Ngày lập </th>
+                    <th>Số điện cũ</th>
+                    <th>Số điện mới</th>
+                    <th>Số nước cũ</th>
+                    <th>Số nước mới</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                @foreach (HoaDon hd in listHoaDon) { 
+                <tr>
+                    <td>@hd.NgayLap</td>
+                    <td>@hd.SoDienCu</td>
+                    <td>@hd.SoDienMoi</td>
+                    <td>@hd.SoNuocCu</td>
+                    <td>@hd.SoNuocMoi</td>
+                    <td>@hd.ThanhTien</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+
+</script>

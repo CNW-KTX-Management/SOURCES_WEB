@@ -1,0 +1,53 @@
+﻿@using KTX_Management.Mapper;
+@{
+    ViewBag.Title = "KetQuaTraCuu";
+    int stt = 1;
+}
+@model List<HopDongMapper>
+
+<div class="container" style="margin: 20px">
+    <h3>Danh sách tra cứu</h3>
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Ngày làm đơn</th>
+                <th>Sinh viên</th>
+                <th>Phòng</th>
+                <th>Tình trạng</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Thao tác</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            @foreach (HopDongMapper hd in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@hd.NgayLamDon</td>
+                    <td>@hd.TenSinhVien</td>
+                    <td>@hd.TenPhong</td>
+                    <td>@hd.TenTinhTrang</td>
+                    <td>@hd.NgayBatDau</td>
+                    <td>@hd.NgayKetThuc</td>
+                    <td><button type="button" class="btn btn-primary" onclick="gotoContactDetail(@hd.IdHopDong);">Chi tiết</button></td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+    <br />
+</div>
+
+<link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+    function gotoContactDetail(id) {
+        window.location = "GoToChiTietHopDong/" + id;
+    }
+</script>
