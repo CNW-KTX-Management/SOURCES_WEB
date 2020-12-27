@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1 class="text-xl-center">Danh sách Sinh Viên</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="HideUpdate();">Thêm sinh viên </button> <br /><br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MSSV</th>
+                <th>Name</th>
+                <th>NgaySinh</th>
+                <th>Phone</th>
+                <th>Passport</th>
+                <th>GioiTinh</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+</div>
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h4 class="modal-title">Thêm m?i</h4></div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="EmloyeeId">id</label>
+                        <input type="text" class="form-control" id="id" placeholder="ID" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">MSSV</label>
+                        <input type="text" id="MSSV" placeholder="Mã số sinh viên" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ChucVu">Name</label>
+                        <input type="text" id="Name" placeholder="Họ và Tên" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">NgaySinh</label>
+                        <input type="text" id="NgaySinh" placeholder="NgaySinh" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">Phone</label>
+                        <input type="text" id="Phone" placeholder="SỐ điện thoại" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">Passport</label>
+                        <input type="text" id="Passport" placeholder="CMND" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">GioTinh</label>
+                        <input type="text" id="GioiTinh" placeholder="Giới tính" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return AddSinhVien();"> Add </button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none" onclick="return EditSinhVien()">Update</button>
+                <button type="button" class="btn btn-dark" id="close"
+                        data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/JavaScript.js"></script>

@@ -1,3 +1,5 @@
+D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\obj\Debug\KTX_Management.csprojAssemblyReference.cache
+D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\obj\Debug\KTX_Management.csproj.CoreCompileInputs.cache
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\bin\KTX_Management.dll.config
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\bin\KTX_Management.dll
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\bin\KTX_Management.pdb
@@ -27,8 +29,6 @@ D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\bin\System.Web.Razo
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\bin\System.Web.WebPages.xml
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\bin\System.Web.WebPages.Deployment.xml
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\bin\System.Web.WebPages.Razor.xml
-D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\obj\Debug\KTX_Management.csprojAssemblyReference.cache
-D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\obj\Debug\KTX_Management.csproj.CoreCompileInputs.cache
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\obj\Debug\KTX_Management.csproj.CopyComplete
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\obj\Debug\KTX_Management.dll
 D:\CNW\GIT_SOURCES\SOURCES_WEB\KTX_Management\KTX_Management\obj\Debug\KTX_Management.pdb

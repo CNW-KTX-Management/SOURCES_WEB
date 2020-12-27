@@ -133,6 +133,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contants\Contants.cs" />
     <Compile Include="Controllers\HopDongController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\SinhVienController.cs" />
     <Compile Include="Controllers\TraCuuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -233,6 +235,7 @@
       <DependentUpon>Database.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -247,6 +250,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\NhanVien.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -264,6 +268,8 @@
     <Content Include="Views\TraCuu\TraCuu.cshtml" />
     <Content Include="Views\TraCuu\KetQuaTraCuu.cshtml" />
     <Content Include="Views\HopDong\TaoHopDong.cshtml" />
+    <Content Include="Views\SinhVien\Index.cshtml" />
+    <Content Include="Views\NhanVien\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -2,6 +2,8 @@
 @using KTX_Management.Models;
 @{
     ViewBag.Title = "GoToChiTietHopDong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
     SinhVien sv = ViewBag.sinhVien;
     NhanVien nv = ViewBag.nhanVien;
     Room room = ViewBag.room;
@@ -9,7 +11,7 @@
 
     string roomName = "-";
     if (room != null) {
-        roomName = room.Id.ToString();
+        roomName = room.TenPhong;
     }
 
     string gioiTinh = "Nam";

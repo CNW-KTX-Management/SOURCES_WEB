@@ -4,7 +4,6 @@
     <Type Name="Dien">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="GiaDien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Dien_HoaDon" Member="HoaDons" ThisKey="Id" OtherKey="IdDien" Type="HoaDon" />
     </Type>
   </Table>
   <Table Name="dbo.SinhVien" Member="SinhViens">
@@ -16,8 +15,6 @@
       <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Passport" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="GioiTinh" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="SinhVien_HoaDon" Member="HoaDons" ThisKey="Id" OtherKey="IdSinhVien" Type="HoaDon" />
-      <Association Name="SinhVien_HopDong" Member="HopDongs" ThisKey="Id" OtherKey="IdSinhVien" Type="HopDong" />
     </Type>
   </Table>
   <Table Name="dbo.HoaDon" Member="HoaDons">
@@ -34,11 +31,6 @@
       <Column Name="SoNuocMoi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ThanhTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="IdSinhVien" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Dien_HoaDon" Member="Dien" ThisKey="IdDien" OtherKey="Id" Type="Dien" IsForeignKey="true" />
-      <Association Name="SinhVien_HoaDon" Member="SinhVien" ThisKey="IdSinhVien" OtherKey="Id" Type="SinhVien" IsForeignKey="true" />
-      <Association Name="NhanVien_HoaDon" Member="NhanVien" ThisKey="IdNhanVien" OtherKey="Id" Type="NhanVien" IsForeignKey="true" />
-      <Association Name="Nuoc_HoaDon" Member="Nuoc" ThisKey="IdNuoc" OtherKey="Id" Type="Nuoc" IsForeignKey="true" />
-      <Association Name="Room_HoaDon" Member="Room" ThisKey="IdRoom" OtherKey="Id" Type="Room" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HopDong" Member="HopDongs">
@@ -52,16 +44,12 @@
       <Column Name="TinhTrang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NgayLamDon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="IdRoom" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="SinhVien_HopDong" Member="SinhVien" ThisKey="IdSinhVien" OtherKey="Id" Type="SinhVien" IsForeignKey="true" />
-      <Association Name="NhanVien_HopDong" Member="NhanVien" ThisKey="IdNhanVien" OtherKey="Id" Type="NhanVien" IsForeignKey="true" />
-      <Association Name="Room_HopDong" Member="Room" ThisKey="IdRoom" OtherKey="Id" Type="Room" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Khu" Member="Khus">
     <Type Name="Khu">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenKhu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Khu_Room" Member="Rooms" ThisKey="Id" OtherKey="IdKhu" Type="Room" />
     </Type>
   </Table>
   <Table Name="dbo.NhanVien" Member="NhanViens">
@@ -75,15 +63,12 @@
       <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="NhanVien_HoaDon" Member="HoaDons" ThisKey="Id" OtherKey="IdNhanVien" Type="HoaDon" />
-      <Association Name="NhanVien_HopDong" Member="HopDongs" ThisKey="Id" OtherKey="IdNhanVien" Type="HopDong" />
     </Type>
   </Table>
   <Table Name="dbo.Nuoc" Member="Nuocs">
     <Type Name="Nuoc">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="GiaNuoc" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Nuoc_HoaDon" Member="HoaDons" ThisKey="Id" OtherKey="IdNuoc" Type="HoaDon" />
     </Type>
   </Table>
   <Table Name="dbo.Room" Member="Rooms">
@@ -95,9 +80,6 @@
       <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SoLuongToiDa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Room_HoaDon" Member="HoaDons" ThisKey="Id" OtherKey="IdRoom" Type="HoaDon" />
-      <Association Name="Room_HopDong" Member="HopDongs" ThisKey="Id" OtherKey="IdRoom" Type="HopDong" />
-      <Association Name="Khu_Room" Member="Khu" ThisKey="IdKhu" OtherKey="Id" Type="Khu" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -161,8 +161,6 @@ namespace KTX_Management.Models
 		
 		private double _GiaDien;
 		
-		private EntitySet<HoaDon> _HoaDons;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -175,7 +173,6 @@ namespace KTX_Management.Models
 		
 		public Dien()
 		{
-			this._HoaDons = new EntitySet<HoaDon>(new Action<HoaDon>(this.attach_HoaDons), new Action<HoaDon>(this.detach_HoaDons));
 			OnCreated();
 		}
 		
@@ -219,19 +216,6 @@ namespace KTX_Management.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Dien_HoaDon", Storage="_HoaDons", ThisKey="Id", OtherKey="IdDien")]
-		public EntitySet<HoaDon> HoaDons
-		{
-			get
-			{
-				return this._HoaDons;
-			}
-			set
-			{
-				this._HoaDons.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -250,18 +234,6 @@ namespace KTX_Management.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.Dien = this;
-		}
-		
-		private void detach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.Dien = null;
 		}
 	}
 	
@@ -285,10 +257,6 @@ namespace KTX_Management.Models
 		
 		private int _GioiTinh;
 		
-		private EntitySet<HoaDon> _HoaDons;
-		
-		private EntitySet<HopDong> _HopDongs;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -311,8 +279,6 @@ namespace KTX_Management.Models
 		
 		public SinhVien()
 		{
-			this._HoaDons = new EntitySet<HoaDon>(new Action<HoaDon>(this.attach_HoaDons), new Action<HoaDon>(this.detach_HoaDons));
-			this._HopDongs = new EntitySet<HopDong>(new Action<HopDong>(this.attach_HopDongs), new Action<HopDong>(this.detach_HopDongs));
 			OnCreated();
 		}
 		
@@ -456,32 +422,6 @@ namespace KTX_Management.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SinhVien_HoaDon", Storage="_HoaDons", ThisKey="Id", OtherKey="IdSinhVien")]
-		public EntitySet<HoaDon> HoaDons
-		{
-			get
-			{
-				return this._HoaDons;
-			}
-			set
-			{
-				this._HoaDons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SinhVien_HopDong", Storage="_HopDongs", ThisKey="Id", OtherKey="IdSinhVien")]
-		public EntitySet<HopDong> HopDongs
-		{
-			get
-			{
-				return this._HopDongs;
-			}
-			set
-			{
-				this._HopDongs.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -500,30 +440,6 @@ namespace KTX_Management.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.SinhVien = this;
-		}
-		
-		private void detach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.SinhVien = null;
-		}
-		
-		private void attach_HopDongs(HopDong entity)
-		{
-			this.SendPropertyChanging();
-			entity.SinhVien = this;
-		}
-		
-		private void detach_HopDongs(HopDong entity)
-		{
-			this.SendPropertyChanging();
-			entity.SinhVien = null;
 		}
 	}
 	
@@ -557,16 +473,6 @@ namespace KTX_Management.Models
 		
 		private System.Nullable<int> _IdSinhVien;
 		
-		private EntityRef<Dien> _Dien;
-		
-		private EntityRef<SinhVien> _SinhVien;
-		
-		private EntityRef<NhanVien> _NhanVien;
-		
-		private EntityRef<Nuoc> _Nuoc;
-		
-		private EntityRef<Room> _Room;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -599,11 +505,6 @@ namespace KTX_Management.Models
 		
 		public HoaDon()
 		{
-			this._Dien = default(EntityRef<Dien>);
-			this._SinhVien = default(EntityRef<SinhVien>);
-			this._NhanVien = default(EntityRef<NhanVien>);
-			this._Nuoc = default(EntityRef<Nuoc>);
-			this._Room = default(EntityRef<Room>);
 			OnCreated();
 		}
 		
@@ -638,10 +539,6 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdRoom != value))
 				{
-					if (this._Room.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdRoomChanging(value);
 					this.SendPropertyChanging();
 					this._IdRoom = value;
@@ -662,10 +559,6 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdNhanVien != value))
 				{
-					if (this._NhanVien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdNhanVienChanging(value);
 					this.SendPropertyChanging();
 					this._IdNhanVien = value;
@@ -686,10 +579,6 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdDien != value))
 				{
-					if (this._Dien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdDienChanging(value);
 					this.SendPropertyChanging();
 					this._IdDien = value;
@@ -710,10 +599,6 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdNuoc != value))
 				{
-					if (this._Nuoc.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdNuocChanging(value);
 					this.SendPropertyChanging();
 					this._IdNuoc = value;
@@ -854,185 +739,11 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdSinhVien != value))
 				{
-					if (this._SinhVien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdSinhVienChanging(value);
 					this.SendPropertyChanging();
 					this._IdSinhVien = value;
 					this.SendPropertyChanged("IdSinhVien");
 					this.OnIdSinhVienChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Dien_HoaDon", Storage="_Dien", ThisKey="IdDien", OtherKey="Id", IsForeignKey=true)]
-		public Dien Dien
-		{
-			get
-			{
-				return this._Dien.Entity;
-			}
-			set
-			{
-				Dien previousValue = this._Dien.Entity;
-				if (((previousValue != value) 
-							|| (this._Dien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Dien.Entity = null;
-						previousValue.HoaDons.Remove(this);
-					}
-					this._Dien.Entity = value;
-					if ((value != null))
-					{
-						value.HoaDons.Add(this);
-						this._IdDien = value.Id;
-					}
-					else
-					{
-						this._IdDien = default(int);
-					}
-					this.SendPropertyChanged("Dien");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SinhVien_HoaDon", Storage="_SinhVien", ThisKey="IdSinhVien", OtherKey="Id", IsForeignKey=true)]
-		public SinhVien SinhVien
-		{
-			get
-			{
-				return this._SinhVien.Entity;
-			}
-			set
-			{
-				SinhVien previousValue = this._SinhVien.Entity;
-				if (((previousValue != value) 
-							|| (this._SinhVien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SinhVien.Entity = null;
-						previousValue.HoaDons.Remove(this);
-					}
-					this._SinhVien.Entity = value;
-					if ((value != null))
-					{
-						value.HoaDons.Add(this);
-						this._IdSinhVien = value.Id;
-					}
-					else
-					{
-						this._IdSinhVien = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SinhVien");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NhanVien_HoaDon", Storage="_NhanVien", ThisKey="IdNhanVien", OtherKey="Id", IsForeignKey=true)]
-		public NhanVien NhanVien
-		{
-			get
-			{
-				return this._NhanVien.Entity;
-			}
-			set
-			{
-				NhanVien previousValue = this._NhanVien.Entity;
-				if (((previousValue != value) 
-							|| (this._NhanVien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._NhanVien.Entity = null;
-						previousValue.HoaDons.Remove(this);
-					}
-					this._NhanVien.Entity = value;
-					if ((value != null))
-					{
-						value.HoaDons.Add(this);
-						this._IdNhanVien = value.Id;
-					}
-					else
-					{
-						this._IdNhanVien = default(int);
-					}
-					this.SendPropertyChanged("NhanVien");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Nuoc_HoaDon", Storage="_Nuoc", ThisKey="IdNuoc", OtherKey="Id", IsForeignKey=true)]
-		public Nuoc Nuoc
-		{
-			get
-			{
-				return this._Nuoc.Entity;
-			}
-			set
-			{
-				Nuoc previousValue = this._Nuoc.Entity;
-				if (((previousValue != value) 
-							|| (this._Nuoc.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Nuoc.Entity = null;
-						previousValue.HoaDons.Remove(this);
-					}
-					this._Nuoc.Entity = value;
-					if ((value != null))
-					{
-						value.HoaDons.Add(this);
-						this._IdNuoc = value.Id;
-					}
-					else
-					{
-						this._IdNuoc = default(int);
-					}
-					this.SendPropertyChanged("Nuoc");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_HoaDon", Storage="_Room", ThisKey="IdRoom", OtherKey="Id", IsForeignKey=true)]
-		public Room Room
-		{
-			get
-			{
-				return this._Room.Entity;
-			}
-			set
-			{
-				Room previousValue = this._Room.Entity;
-				if (((previousValue != value) 
-							|| (this._Room.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Room.Entity = null;
-						previousValue.HoaDons.Remove(this);
-					}
-					this._Room.Entity = value;
-					if ((value != null))
-					{
-						value.HoaDons.Add(this);
-						this._IdRoom = value.Id;
-					}
-					else
-					{
-						this._IdRoom = default(int);
-					}
-					this.SendPropertyChanged("Room");
 				}
 			}
 		}
@@ -1082,12 +793,6 @@ namespace KTX_Management.Models
 		
 		private System.Nullable<int> _IdRoom;
 		
-		private EntityRef<SinhVien> _SinhVien;
-		
-		private EntityRef<NhanVien> _NhanVien;
-		
-		private EntityRef<Room> _Room;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1114,9 +819,6 @@ namespace KTX_Management.Models
 		
 		public HopDong()
 		{
-			this._SinhVien = default(EntityRef<SinhVien>);
-			this._NhanVien = default(EntityRef<NhanVien>);
-			this._Room = default(EntityRef<Room>);
 			OnCreated();
 		}
 		
@@ -1151,10 +853,6 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdSinhVien != value))
 				{
-					if (this._SinhVien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdSinhVienChanging(value);
 					this.SendPropertyChanging();
 					this._IdSinhVien = value;
@@ -1175,10 +873,6 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdNhanVien != value))
 				{
-					if (this._NhanVien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdNhanVienChanging(value);
 					this.SendPropertyChanging();
 					this._IdNhanVien = value;
@@ -1299,117 +993,11 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdRoom != value))
 				{
-					if (this._Room.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdRoomChanging(value);
 					this.SendPropertyChanging();
 					this._IdRoom = value;
 					this.SendPropertyChanged("IdRoom");
 					this.OnIdRoomChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SinhVien_HopDong", Storage="_SinhVien", ThisKey="IdSinhVien", OtherKey="Id", IsForeignKey=true)]
-		public SinhVien SinhVien
-		{
-			get
-			{
-				return this._SinhVien.Entity;
-			}
-			set
-			{
-				SinhVien previousValue = this._SinhVien.Entity;
-				if (((previousValue != value) 
-							|| (this._SinhVien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SinhVien.Entity = null;
-						previousValue.HopDongs.Remove(this);
-					}
-					this._SinhVien.Entity = value;
-					if ((value != null))
-					{
-						value.HopDongs.Add(this);
-						this._IdSinhVien = value.Id;
-					}
-					else
-					{
-						this._IdSinhVien = default(int);
-					}
-					this.SendPropertyChanged("SinhVien");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NhanVien_HopDong", Storage="_NhanVien", ThisKey="IdNhanVien", OtherKey="Id", IsForeignKey=true)]
-		public NhanVien NhanVien
-		{
-			get
-			{
-				return this._NhanVien.Entity;
-			}
-			set
-			{
-				NhanVien previousValue = this._NhanVien.Entity;
-				if (((previousValue != value) 
-							|| (this._NhanVien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._NhanVien.Entity = null;
-						previousValue.HopDongs.Remove(this);
-					}
-					this._NhanVien.Entity = value;
-					if ((value != null))
-					{
-						value.HopDongs.Add(this);
-						this._IdNhanVien = value.Id;
-					}
-					else
-					{
-						this._IdNhanVien = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("NhanVien");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_HopDong", Storage="_Room", ThisKey="IdRoom", OtherKey="Id", IsForeignKey=true)]
-		public Room Room
-		{
-			get
-			{
-				return this._Room.Entity;
-			}
-			set
-			{
-				Room previousValue = this._Room.Entity;
-				if (((previousValue != value) 
-							|| (this._Room.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Room.Entity = null;
-						previousValue.HopDongs.Remove(this);
-					}
-					this._Room.Entity = value;
-					if ((value != null))
-					{
-						value.HopDongs.Add(this);
-						this._IdRoom = value.Id;
-					}
-					else
-					{
-						this._IdRoom = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Room");
 				}
 			}
 		}
@@ -1445,8 +1033,6 @@ namespace KTX_Management.Models
 		
 		private string _TenKhu;
 		
-		private EntitySet<Room> _Rooms;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1459,7 +1045,6 @@ namespace KTX_Management.Models
 		
 		public Khu()
 		{
-			this._Rooms = new EntitySet<Room>(new Action<Room>(this.attach_Rooms), new Action<Room>(this.detach_Rooms));
 			OnCreated();
 		}
 		
@@ -1503,19 +1088,6 @@ namespace KTX_Management.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Khu_Room", Storage="_Rooms", ThisKey="Id", OtherKey="IdKhu")]
-		public EntitySet<Room> Rooms
-		{
-			get
-			{
-				return this._Rooms;
-			}
-			set
-			{
-				this._Rooms.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1534,18 +1106,6 @@ namespace KTX_Management.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Rooms(Room entity)
-		{
-			this.SendPropertyChanging();
-			entity.Khu = this;
-		}
-		
-		private void detach_Rooms(Room entity)
-		{
-			this.SendPropertyChanging();
-			entity.Khu = null;
 		}
 	}
 	
@@ -1573,10 +1133,6 @@ namespace KTX_Management.Models
 		
 		private string _Password;
 		
-		private EntitySet<HoaDon> _HoaDons;
-		
-		private EntitySet<HopDong> _HopDongs;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1603,8 +1159,6 @@ namespace KTX_Management.Models
 		
 		public NhanVien()
 		{
-			this._HoaDons = new EntitySet<HoaDon>(new Action<HoaDon>(this.attach_HoaDons), new Action<HoaDon>(this.detach_HoaDons));
-			this._HopDongs = new EntitySet<HopDong>(new Action<HopDong>(this.attach_HopDongs), new Action<HopDong>(this.detach_HopDongs));
 			OnCreated();
 		}
 		
@@ -1788,32 +1342,6 @@ namespace KTX_Management.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NhanVien_HoaDon", Storage="_HoaDons", ThisKey="Id", OtherKey="IdNhanVien")]
-		public EntitySet<HoaDon> HoaDons
-		{
-			get
-			{
-				return this._HoaDons;
-			}
-			set
-			{
-				this._HoaDons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NhanVien_HopDong", Storage="_HopDongs", ThisKey="Id", OtherKey="IdNhanVien")]
-		public EntitySet<HopDong> HopDongs
-		{
-			get
-			{
-				return this._HopDongs;
-			}
-			set
-			{
-				this._HopDongs.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1833,30 +1361,6 @@ namespace KTX_Management.Models
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.NhanVien = this;
-		}
-		
-		private void detach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.NhanVien = null;
-		}
-		
-		private void attach_HopDongs(HopDong entity)
-		{
-			this.SendPropertyChanging();
-			entity.NhanVien = this;
-		}
-		
-		private void detach_HopDongs(HopDong entity)
-		{
-			this.SendPropertyChanging();
-			entity.NhanVien = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Nuoc")]
@@ -1868,8 +1372,6 @@ namespace KTX_Management.Models
 		private int _Id;
 		
 		private double _GiaNuoc;
-		
-		private EntitySet<HoaDon> _HoaDons;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1883,7 +1385,6 @@ namespace KTX_Management.Models
 		
 		public Nuoc()
 		{
-			this._HoaDons = new EntitySet<HoaDon>(new Action<HoaDon>(this.attach_HoaDons), new Action<HoaDon>(this.detach_HoaDons));
 			OnCreated();
 		}
 		
@@ -1927,19 +1428,6 @@ namespace KTX_Management.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Nuoc_HoaDon", Storage="_HoaDons", ThisKey="Id", OtherKey="IdNuoc")]
-		public EntitySet<HoaDon> HoaDons
-		{
-			get
-			{
-				return this._HoaDons;
-			}
-			set
-			{
-				this._HoaDons.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1958,18 +1446,6 @@ namespace KTX_Management.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.Nuoc = this;
-		}
-		
-		private void detach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.Nuoc = null;
 		}
 	}
 	
@@ -1993,12 +1469,6 @@ namespace KTX_Management.Models
 		
 		private int _SoLuongToiDa;
 		
-		private EntitySet<HoaDon> _HoaDons;
-		
-		private EntitySet<HopDong> _HopDongs;
-		
-		private EntityRef<Khu> _Khu;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2021,9 +1491,6 @@ namespace KTX_Management.Models
 		
 		public Room()
 		{
-			this._HoaDons = new EntitySet<HoaDon>(new Action<HoaDon>(this.attach_HoaDons), new Action<HoaDon>(this.detach_HoaDons));
-			this._HopDongs = new EntitySet<HopDong>(new Action<HopDong>(this.attach_HopDongs), new Action<HopDong>(this.detach_HopDongs));
-			this._Khu = default(EntityRef<Khu>);
 			OnCreated();
 		}
 		
@@ -2058,10 +1525,6 @@ namespace KTX_Management.Models
 			{
 				if ((this._IdKhu != value))
 				{
-					if (this._Khu.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdKhuChanging(value);
 					this.SendPropertyChanging();
 					this._IdKhu = value;
@@ -2171,66 +1634,6 @@ namespace KTX_Management.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_HoaDon", Storage="_HoaDons", ThisKey="Id", OtherKey="IdRoom")]
-		public EntitySet<HoaDon> HoaDons
-		{
-			get
-			{
-				return this._HoaDons;
-			}
-			set
-			{
-				this._HoaDons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_HopDong", Storage="_HopDongs", ThisKey="Id", OtherKey="IdRoom")]
-		public EntitySet<HopDong> HopDongs
-		{
-			get
-			{
-				return this._HopDongs;
-			}
-			set
-			{
-				this._HopDongs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Khu_Room", Storage="_Khu", ThisKey="IdKhu", OtherKey="Id", IsForeignKey=true)]
-		public Khu Khu
-		{
-			get
-			{
-				return this._Khu.Entity;
-			}
-			set
-			{
-				Khu previousValue = this._Khu.Entity;
-				if (((previousValue != value) 
-							|| (this._Khu.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Khu.Entity = null;
-						previousValue.Rooms.Remove(this);
-					}
-					this._Khu.Entity = value;
-					if ((value != null))
-					{
-						value.Rooms.Add(this);
-						this._IdKhu = value.Id;
-					}
-					else
-					{
-						this._IdKhu = default(int);
-					}
-					this.SendPropertyChanged("Khu");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2249,30 +1652,6 @@ namespace KTX_Management.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.Room = this;
-		}
-		
-		private void detach_HoaDons(HoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.Room = null;
-		}
-		
-		private void attach_HopDongs(HopDong entity)
-		{
-			this.SendPropertyChanging();
-			entity.Room = this;
-		}
-		
-		private void detach_HopDongs(HopDong entity)
-		{
-			this.SendPropertyChanging();
-			entity.Room = null;
 		}
 	}
 }
