@@ -9,9 +9,51 @@
     <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    @RenderBody()
+    <div class="container-fluid">
+        <div class="row bg-white">
+            <div class="col-md-2">
+                <img src="~/Content/HinhKTX/logoKTX.png" style="width:200px; height:100px" />
+            </div>
+            <div class="col-md-10 w-100">
+                <img src="~/Content/HinhKTX/banner.PNG" style="width:1234px; height:100px" />
+            </div>
+        </div>
+        <div class="row mb-1 mt-1">
+            <div class="col-md-9"></div>
+            <a class="btn btn-primary" href="/Home/Login" style="color: white">Đăng nhập</a>
+        </div>
+        <div class="row bg-secondary">
+            <nav class="navbar navbar-expand-lg  bg-secondary">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto" style="margin-left:200px">
+                        <li class="nav-item" style="background-color:transparent">
+                            <a class="nav-link" href="/HopDong/HopDongMain" style="color: white">Danh sách hợp đồng</a>
+                        </li>
+                        <li class="nav-item" style="background-color:transparent">
+                            <a class="nav-link"  href="/NhanVien/Index" style="color: white">Danh sách nhân viên</a>
+                        </li>
+                        <li class="nav-item" style="background-color:transparent">
+                            <a class="nav-link"  href="/SinhVien/Index" style="color: white">Danh sách sinh viên đăng ký</a>
+                        </li>
+                        <li class="nav-item" style="background-color:transparent">
+                            <a class="nav-link"  href="/ThanhToan/Index" style="color: white">Thanh toán tiền phòng</a>
+                        </li>
+                        <li class="nav-item" style="background-color:transparent">
+                            <a class="nav-link" href="/TraCuu/TraCuu" style="color: white">Tra cứu</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row">
+            @RenderBody()
+        </div>
+
+    </div>
 </body>
 </html>

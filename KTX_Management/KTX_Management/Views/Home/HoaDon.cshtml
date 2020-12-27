@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "HoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h1>Danh sách hóa đơn</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick=""> Tạo hóa đơn </button><br /><br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Phòng </th>
+                <th> Nhân viên lập </th>
+                <th> Giá điện </th>
+                <th> Giá nước </th>
+                <th> Điện cũ </th>
+                <th> Điện mới </th>
+                <th> Nước cũ </th>
+                <th> Nước mới </th>
+                <th> Ngày lập </th>
+                <th> Thành tiền</th>
+                <th>  </th>
+            </tr>
+        </thead>
+        <tbody class="tbody "></tbody>
+    </table>
+</div>
+
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" id="iclose" data-dismiss="modal">X</button>
+
+
+
+            <div class="modal-header"><h4 class="modal-title" id="myModalLabel">Thêm mới</h4></div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="EmployeeID">ID</label>
+                        <input type="text" class="form-control" id="ID" placeholder="Mã" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Tên" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Type</label>
+                        <input type="text" class="form-control" id="Type" placeholder="Loại" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Price</label>
+                        <input type="text" class="form-control" id="Price" placeholder="Giá" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" onclick="return Update();" style="display:none">Add</button>
+                <button type="button" id="iclose" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/HoaDont.js"></script>
+

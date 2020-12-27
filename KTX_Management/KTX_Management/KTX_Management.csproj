@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contants\Contants.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HopDongController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapper\GetHoaDon.cs" />
     <Compile Include="Mapper\HopDongMapper.cs" />
     <Compile Include="Mapper\TraCuuMapper.cs" />
     <Compile Include="Models\Database.designer.cs">
@@ -162,6 +164,8 @@
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\js\jquery-3.3.1.min.js" />
+    <Content Include="Content\HinhKTX\banner.PNG" />
+    <Content Include="Content\HinhKTX\logoKTX.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -237,6 +241,7 @@
       <DependentUpon>Database.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\HoaDont.js" />
     <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -273,6 +278,9 @@
     <Content Include="Views\SinhVien\Index.cshtml" />
     <Content Include="Views\NhanVien\Index.cshtml" />
     <Content Include="Views\ThanhToan\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\HoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
