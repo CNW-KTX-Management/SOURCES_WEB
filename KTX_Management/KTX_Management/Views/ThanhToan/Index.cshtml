@@ -1,0 +1,290 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row" style="margin-top:20px">
+        <div class="col-md-3">
+
+            <div class="card" style="padding:20px">
+                <h3>Thông tin phòng</h3>
+                <input type="number" hidden="hidden" name="txtRoomId" id="txtRoomId" />
+                <input type="number" hidden="hidden" name="txtSinhVienId" id="txtSinhVienId" />
+                <input type="number" hidden="hidden" name="txtDienId" id="txtDienId" />
+                <input type="number" hidden="hidden" name="txtNuocId" id="txtNuocId" />
+                <input type="number" hidden="hidden" name="txtNhanVienId" id="txtNhanVienId" />
+                <div class="form-group">
+                    <div class="form-inline" style="margin-top:20px">
+                        <label style="margin-right:20px"><b>Phòng</b></label>
+                        <select style="width:100%; margin-top:10px" class="form-control" id="selectRoom" onchange="onChangeRoom(this)"></select>
+                    </div>
+
+                    <div class="form-inline" style="margin-top:20px">
+                        <label style="margin-right:20px"><b>Sinh viên</b></label>
+                        <select style="width:100%; margin-top:10px" class="form-control" id="selectSinhVien" onchange="onChangeSinhVien(this)"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card" style="padding:20px">
+                <h3>Thông tin thanh toán</h3>
+                <input type="number" hidden="hidden" name="txtSexId" id="txtSexId" />
+
+                <div class="container-fluid" id="alert" style="background:#EEEEEE; text-align:center; border-radius:6px; padding:4px" hidden="hidden">
+                    <input id="txtWarning" style="border:none; background-color:transparent" disabled="disabled" />
+                    <button type="button" class="btn btn-warning" id="btnClose" onclick="closeAlert();">Close</button>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <h4 style="margin-right:10px">Giá điện</h4>
+                            <div class="form-inline">
+                                <select style="width:100%; margin-top:10px" class="form-control" id="selectDien" onchange="onChangeGiaDien(this)"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-right:10px">Số điện cũ</label>
+                            <input style="margin-right:10px" type="number" class="form-control" id="SoDienCu">
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-right:10px">Số điện mới</label>
+                            <input style="margin-right:10px" type="number" class="form-control" id="SoDienMoi">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <h4 style="margin-right:10px">Giá nước</h4>
+                            <div class="form-inline">
+                                <select style="width:100%; margin-top:10px" class="form-control" id="selectNuoc" onchange="onChangeGiaNuoc(this)"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-right:10px">Số nước cũ</label>
+                            <input style="margin-right:10px" type="number" class="form-control" id="SoNuocCu">
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-right:10px">Số nước mới</label>
+                            <input style="margin-right:10px" type="number" class="form-control" id="SoNuocMoi">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label style="margin-right:10px">Thành tiền</label>
+                    <input style="margin-right:10px" type="number" class="form-control" id="NgaySinh" disabled="disabled">
+                </div>
+
+                <button class="btn btn-primary" onclick="thanhToan();">Xác nhận thanh toán</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="padding:20px">
+                <h3>Thông tin nhân viên</h3>
+                <div class="form-group">
+                    <div class="form-inline" style="margin-top:20px">
+                        <label style="margin-right:20px"><b>Nhân viên</b></label>
+                        <div class="form-inline">
+                            <select style="width:100%; margin-top:10px" class="form-control" id="selectNhanVien" onchange="onChangeNhanVien(this)"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        loadData();
+        getDien();
+        getGiaNuoc();
+        getNhanVien();
+    });
+
+    function loadData() {
+        $.ajax({
+            url: "/ThanhToan/InitThanhToan",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var s = "";
+                s += '<option value="-1">Chọn phòng</option>';
+                $.each(result, function (key, item) {
+                    s += '<option value="' + item.Id + '">' + item.TenPhong + '</option>';
+
+                })
+                $("#selectRoom").html(s);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function closeAlert() {
+        loadData();
+        getDien();
+        getGiaNuoc();
+        getNhanVien();
+        document.getElementById("alert").hidden = true;
+    }
+
+    function onChangeSinhVien(obj) {
+        var id = obj.value;
+        $('#txtSinhVienId').val(id);
+    }
+
+    function onChangeNhanVien(obj) {
+        var id = obj.value;
+        $('#txtNhanVienId').val(id);
+    }
+
+    function onChangeGiaDien(obj) {
+        var id = obj.value;
+        $('#txtDienId').val(id);
+    }
+
+    function onChangeGiaNuoc(obj) {
+        var id = obj.value;
+        $('#txtNuocId').val(id);
+    }
+
+    function getDien() {
+        $.ajax({
+            url: "/ThanhToan/GetGiaDien",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var s = "";
+                s += '<option value="-1">Chọn giá điện đang áp dụng</option>';
+                $.each(result, function (key, item) {
+                    s += '<option value="' + item.Id + '">' + item.GiaDien + '</option>';
+
+                })
+                $("#selectDien").html(s);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function getGiaNuoc() {
+        $.ajax({
+            url: "/ThanhToan/GetGiaNuoc",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var s = "";
+                s += '<option value="-1">Chọn giá nước đang áp dụng</option>';
+                $.each(result, function (key, item) {
+                    s += '<option value="' + item.Id + '">' + item.GiaNuoc + '</option>';
+
+                })
+                $("#selectNuoc").html(s);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+
+    function getNhanVien() {
+        $.ajax({
+            url: "/ThanhToan/GetNhanVien",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var s = "";
+                s += '<option value="-1">Chọn nhân viên chịu trách nhiệm</option>';
+                $.each(result, function (key, item) {
+                    s += '<option value="' + item.Id + '">' + item.Name + '</option>';
+
+                })
+                $("#selectNhanVien").html(s);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function onChangeRoom(obj) {
+        var id = obj.value;
+        $('#txtRoomId').val(id);
+        $.ajax({
+            url: "/ThanhToan/GetListSinhVienByRoom/" + id,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var s = "";
+                var index = 0;
+                $.each(result, function (key, item) {
+                    s += '<option value="' + item.Id + '">' + item.Name + '</option>';
+                    if (index == 0) {
+                        $("#txtSinhVienId").val(id);
+                    }
+                    index++;
+                })
+                $("#selectSinhVien").html(s);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function thanhToan() {
+        var data = {
+            IdRoom: $('#txtRoomId').val(),
+            IdNhanVien: $('#txtNhanVienId').val(),
+            IdDien: $('#txtDienId').val(),
+            IdNuoc: $('#txtNuocId').val(),
+            SoDienCu: $('#SoDienCu').val(),
+            SoDienMoi: $('#SoDienMoi').val(),
+            SoNuocMoi: $('#SoNuocMoi').val(),
+            SoNuocCu: $('#SoNuocCu').val(),
+            IdSinhVien: $('#txtSinhVienId').val(),
+        }
+
+        $.ajax({
+            url: "/ThanhToan/XacNhanThanhToan",
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: function (result) {
+                if (result) {
+                    $('#txtWarning').val("Thanh toán thành công");
+                } else {
+                    $('#txtWarning').val("Thanh toán thất bại");
+                }
+                document.getElementById("alert").hidden = false;
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+</script>

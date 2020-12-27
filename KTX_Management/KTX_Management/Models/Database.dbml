@@ -15,6 +15,7 @@
       <Column Name="Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Passport" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="GioiTinh" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdRoom" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.HoaDon" Member="HoaDons">

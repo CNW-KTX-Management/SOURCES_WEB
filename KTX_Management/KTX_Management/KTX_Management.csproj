@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\HopDongAPIController.cs" />
+    <Compile Include="API\ThanhToanAPIController.cs" />
     <Compile Include="API\TraCuuAPIController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Controllers\HopDongController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
+    <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Controllers\TraCuuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -270,6 +272,7 @@
     <Content Include="Views\HopDong\TaoHopDong.cshtml" />
     <Content Include="Views\SinhVien\Index.cshtml" />
     <Content Include="Views\NhanVien\Index.cshtml" />
+    <Content Include="Views\ThanhToan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

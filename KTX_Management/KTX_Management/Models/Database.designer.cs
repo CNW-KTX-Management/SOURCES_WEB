@@ -257,6 +257,8 @@ namespace KTX_Management.Models
 		
 		private int _GioiTinh;
 		
+		private System.Nullable<int> _IdRoom;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -275,6 +277,8 @@ namespace KTX_Management.Models
     partial void OnPassportChanged();
     partial void OnGioiTinhChanging(int value);
     partial void OnGioiTinhChanged();
+    partial void OnIdRoomChanging(System.Nullable<int> value);
+    partial void OnIdRoomChanged();
     #endregion
 		
 		public SinhVien()
@@ -418,6 +422,26 @@ namespace KTX_Management.Models
 					this._GioiTinh = value;
 					this.SendPropertyChanged("GioiTinh");
 					this.OnGioiTinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRoom", DbType="Int")]
+		public System.Nullable<int> IdRoom
+		{
+			get
+			{
+				return this._IdRoom;
+			}
+			set
+			{
+				if ((this._IdRoom != value))
+				{
+					this.OnIdRoomChanging(value);
+					this.SendPropertyChanging();
+					this._IdRoom = value;
+					this.SendPropertyChanged("IdRoom");
+					this.OnIdRoomChanged();
 				}
 			}
 		}
