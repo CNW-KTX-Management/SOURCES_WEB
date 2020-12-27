@@ -263,6 +263,7 @@
     <Content Include="Views\HopDong\GoToChiTietHopDong.cshtml" />
     <Content Include="Views\TraCuu\TraCuu.cshtml" />
     <Content Include="Views\TraCuu\KetQuaTraCuu.cshtml" />
+    <Content Include="Views\HopDong\TaoHopDong.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

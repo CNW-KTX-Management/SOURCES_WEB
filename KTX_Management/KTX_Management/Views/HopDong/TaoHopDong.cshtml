@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "TaoHopDong";
+}
+
+<h2 style="margin-left:30px">Đăng ký thuê phòng KTX</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="card" style="padding:20px">
+                <h3>Thông tin cá nhân</h3>
+                <input type="number" hidden="hidden" name="txtSexId" id="txtSexId" />
+
+                <div class="container-fluid" id="alert" style="background:#EEEEEE; text-align:center; border-radius:6px; padding:4px" hidden="hidden">
+                    <input id="txtWarning" style="border:none; background-color:transparent" disabled="disabled" />
+                    <button type="button" class="btn btn-warning" id="btnClose" onclick="closeAlert();">Close</button>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label style="margin-right:10px">Mã số sinh viên</label>
+                            <input style="margin-right:10px" type="text" class="form-control" id="MSSV" />
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-right:10px">Tên sinh viên</label>
+                            <input style="margin-right:10px" type="text" class="form-control" id="Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-right:10px">Giới tính</label>
+                            <select style="width:100%;" class="form-control" id="selectSex" onchange="onChangeSex(this)">
+                                <option value="0">Nam</option>
+                                <option value="1">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label style="margin-right:10px">Ngày sinh</label>
+                            <input style="margin-right:10px" type="date" class="form-control" id="NgaySinh">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-right:10px">CMND</label>
+                            <input style="margin-right:10px" type="number" class="form-control" id="CMND">
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-right:10px">Số điện thoại</label>
+                            <input style="margin-right:10px" type="number" class="form-control" id="SDT">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="createContact();">Đăng ký</button>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+    </div>
+</div>
+
+
+<link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+    function onChangeSex(obj) {
+        var id = obj.value;
+        document.getElementById("txtSexId").value = id;
+    }
+
+    function closeAlert() {
+        document.getElementById("alert").hidden = true;
+        document.location = "HopDongMain";
+    }
+
+    function createContact() {
+        var data = {
+            MSSV: $('#MSSV').val(),
+            Name: $('#Name').val(),
+            GioiTinh: $('#txtSexId').val(),
+            NgaySinh: $('#NgaySinh').val(),
+            Passport: $('#CMND').val(),
+            Phone: $('#SDT').val(),
+        }
+
+        $.ajax({
+            url: "/HopDong/CreateContact",
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: function (result) {
+                if (result) {
+                    $('#txtWarning').val("Đăng ký thành công");
+                } else {
+                    $('#txtWarning').val("Đăng ký thất bại");
+                }
+                document.getElementById("alert").hidden = false;
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+</script>

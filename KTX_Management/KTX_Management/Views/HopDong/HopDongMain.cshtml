@@ -26,7 +26,7 @@
     <br />
 </div>
 
-<button type="button" class="btn btn-primary" style="margin-left: 20px; text-align: center">Tạo hợp đồng mới</button>
+<button type="button" onclick="addContact();" class="btn btn-primary" style="margin-left: 20px; text-align: center">Tạo hợp đồng mới</button>
 
 <div class="modal" id="myModal" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -139,6 +139,10 @@
 
     function closeElert() {
         document.getElementById("alert").hidden = true;
+    }
+
+    function addContact() {
+        window.location = "HopDong/TaoHopDong";
     }
 
     function closeDialog() {

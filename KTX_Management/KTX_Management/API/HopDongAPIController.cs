@@ -128,6 +128,25 @@ namespace KTX_Management.API
             return list;
         }
 
+        [HttpPost]
+        public bool createContact(SinhVien sv) {
+            try
+            {
+                data.SinhViens.InsertOnSubmit(sv);
+                data.SubmitChanges();
+                HopDong hd = new HopDong();
+                hd.IdSinhVien = sv.Id;
+                hd.NgayLamDon = DateTime.Now.ToString();
+                hd.TinhTrang = 1;
+                data.HopDongs.InsertOnSubmit(hd);
+                data.SubmitChanges();
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
         public string getTenTinhTrang(int id)
         {
             switch (id)

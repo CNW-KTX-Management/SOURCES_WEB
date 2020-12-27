@@ -44,5 +44,15 @@ namespace KTX_Management.Controllers
         {
             return Json(controller.CapNhatHopDong(hd), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult TaoHopDong() {
+            return View();
+        }
+
+        public JsonResult CreateContact(SinhVien sv)
+        {
+            bool result = controller.createContact(sv);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
